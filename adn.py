@@ -76,16 +76,15 @@ class Adn:
                     'data': params
             })
             
-        response = func(url, headers=headers, *args, **kwargs)
+        response = func(url, headers=headers if self.access_token != None else None, *args, **kwargs)
         content = response.content.decode('utf-8')
-
 
         # create stash for last function intel
         self._last_call = {
             'api_call': api_call,
             'api_error': None,
             'cookies': response.cookies,
-            'error': response.error,
+            'error': response.error if hasattr(response, 'error') else None,
             'headers': response.headers,
             'status_code': response.status_code,
             'url': response.url,
