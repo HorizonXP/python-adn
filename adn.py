@@ -14,7 +14,7 @@ import requests
 import json
 import re
 
-from adn_endpoints import api_table, base_url
+from .adn_endpoints import api_table, base_url
 
 
 class Adn:
